@@ -1,5 +1,7 @@
 1. 集训配置，slurm脚本提交任务
 
+slurm的任务名称设置为quantization_wwj
+
 
 2. 节点调试
 
