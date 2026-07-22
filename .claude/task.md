@@ -75,3 +75,54 @@
 
 ### 后续
 - 创建集群环境与数据构建 skills，然后实现最小可运行原型。
+
+## 2026-07-22 13:14 - 编写 ICLR 2027 论文写作说明
+
+### 目标
+- 为 OPD-QAT 建立中文论文写作规范和英文论文逐节提纲，围绕 exposure bias、teacher forcing 和 BitDistiller 组织论文叙事。
+
+### 修改
+- `arxiv.md`：新增论文定位、核心叙事、参考工作关系、章节提纲、实验问题、图表要求、引用规范、ICLR 投稿检查和完成标准。
+
+### 关键决策
+- 暂用 `OPD-QAT`，论文按匿名 ICLR 投稿版设计。
+- 将本文问题表述为量化恢复中的 state-distribution mismatch 或 quantization-amplified exposure bias，避免直接把量化误差等同于经典 exposure bias。
+- BitDistiller 作为量化蒸馏结构参考和必须正面对比的 offline baseline；其 teacher-generated data 结论不能直接用于支持 OPD-QAT。
+- ICLR 2027 规则尚未发布，暂按 ICLR 2026 的 9 页匿名稿要求规划，并要求投稿前重新核查。
+
+### 难点与不确定项
+- 最终方法名、标题和 ICLR 2027 官方格式尚未确定。
+- ShortOPD 开放生成 prompt/judge 模板与 GPT-5.5 评测仍待获取。
+- 论文中的性能主张和数值必须等待实验完成。
+
+### 验证
+- 已核查 Scheduled Sampling、MIXER、Professor Forcing、GKD 和 BitDistiller 的核心论点。
+- 已检查文档未把未完成实验写成既定结果。
+
+### 后续
+- 建立详细 related-work 引用表，并在实验完成后依据 run 结果填充英文论文初稿。
+
+## 2026-07-22 13:30 - 补充量化推理相关工作
+
+### 目标
+- 将 ReasoningQAT、reasoning compression 分析和 NVFP4 QAD 纳入论文定位，并明确它们对 OPD-QAT 新颖性与实验设计的影响。
+
+### 修改
+- `arxiv.md`：新增三篇直接相关工作的核心方法、与 OPD-QAT 的区别和必须增加的对照实验。
+- `arxiv.md`：在 baseline、消融和初始参考文献中加入 ReasoningQAT、sensitive-layer mixed precision 和 NVFP4 QAD。
+
+### 关键决策
+- 将 ReasoningQAT 视为最接近的 off-policy reasoning-QAT baseline，而非忽略数据分布的工作。
+- 将 NVFP4 QAD 视为最重要的 matched offline-QAD baseline，并明确其可能证伪 OPD-QAT 核心假设。
+- 增加敏感层保护对照，以排除收益仅来自最后层或 `mlp.up_proj` 修复的解释。
+
+### 难点与不确定项
+- ReasoningQAT 的完整复现成本和与当前 INT4 W4A16 设置的可比性需进一步核查。
+- `When Reasoning Meets Compression` 的敏感层结论主要来自 reasoning/distilled model，是否适用于当前非 thinking Qwen3 需要实验验证。
+
+### 验证
+- 已核查三篇论文的原始摘要、方法描述及主要结论。
+- 文档未将不同量化格式下的结论直接视为可横向比较结果。
+
+### 后续
+- 先做 matched offline QAD 与 OPD-QAT 小规模对照，判断论文核心假设是否成立。
