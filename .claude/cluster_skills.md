@@ -2,6 +2,8 @@
 
 slurm的任务名称设置为quantization_wwj
 
+集群查看GPU使用情况命令：/work/projects/polyullm/public/cluster
+
 
 2. 节点调试
 
